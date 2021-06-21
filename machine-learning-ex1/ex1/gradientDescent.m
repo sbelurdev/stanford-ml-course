@@ -17,11 +17,13 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
+    % theta = theta - [...] is obvious vectorization
+    % However, the [...] is not very obvious -- it has 2 parts:
+    %   Part 1 "(X*theta - y)" which represents vectorization of just the h(x) - y part
+    %   Part 2 "(X*theta - y)' * X" which is the vectorization of summing of the product of h(x) - y with x0/x1...xn each over i samples
+    % The outermost transpose is to get back to the same dimensions as theta
 
-
-
-
-
+    theta = theta - (alpha/m) * ((X*theta - y)' * X)'
 
     % ============================================================
 
